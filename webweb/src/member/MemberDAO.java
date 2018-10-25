@@ -58,13 +58,16 @@ public class MemberDAO {
 			con=getConnection();
 			//트랜잭션
 			con.setAutoCommit(false);
-			String sql="insert into member values(?,?,?,?,?)";
+			String sql="insert into member3 values(?,?,?,?,?,?,?,?)";
 			pstmt=con.prepareStatement(sql);
 			pstmt.setString(1, vo.getUserid());
 			pstmt.setString(2, vo.getPassword());
 			pstmt.setString(3, vo.getName());
 			pstmt.setString(4, vo.getGender());
-			pstmt.setString(5, vo.getEmail());
+			pstmt.setString(5, vo.getBirth_dd());
+			pstmt.setString(6, vo.getEmail());
+			pstmt.setString(7, vo.getPhone());
+			pstmt.setString(8, vo.getAddress());
 			result=pstmt.executeUpdate();
 			con.commit();
 		} catch (SQLException e) {
@@ -87,7 +90,7 @@ public class MemberDAO {
 		try {
 			con=getConnection();
 			con.setAutoCommit(false);
-			String sql="select * from member where userid=? and password=?";
+			String sql="select * from member3 where userid=? and password=?";
 			pstmt=con.prepareStatement(sql);
 			pstmt.setString(1, id);
 			pstmt.setString(2, password);
@@ -117,7 +120,7 @@ public class MemberDAO {
 		try {
 			con=getConnection();
 			con.setAutoCommit(false);
-			String sql="select * from member where userid=?";
+			String sql="select * from member3 where userid=?";
 			pstmt=con.prepareStatement(sql);
 			pstmt.setString(1, userid);
 			rs=pstmt.executeQuery();
